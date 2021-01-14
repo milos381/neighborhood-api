@@ -1,4 +1,4 @@
 class Report < ApplicationRecord
-    belongs_to :family
-  end
-  
+    has_many :events
+    has_many :families, through: :events
+end

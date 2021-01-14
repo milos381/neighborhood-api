@@ -8,10 +8,7 @@ class FamiliesController < ApplicationController
     end
     def create
 
-        family = Family.new
-        family.name = Faker::Name.first_name
-        family.street = Street.find(params["street_id"])
-        family.save
+        family = Family.create(family_params)
         render json: FamilySerializer.new(family).to_serialized_json
 
     end
@@ -21,5 +18,9 @@ class FamiliesController < ApplicationController
         family.destroy
         render json: FamilySerializer.new(family).to_serialized_json
 
+    end
+    private
+    def family_params
+        params.require(:family).permit(:name)
     end
 end

@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+family_a = Family.create(name: "Browns family")
+report_a = Report.create(headline: "Some HEadline", content: "Some Content about some event")
+event_a = Event.create(family: family_a, report: report_a)
