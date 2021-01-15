@@ -5,6 +5,7 @@ class FamiliesController < ApplicationController
     end
     def show
         @family = Family.find(params[:id])
+        render json: @family, only: [:id, :name]
     end
     def create
 

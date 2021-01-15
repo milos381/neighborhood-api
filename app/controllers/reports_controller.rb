@@ -5,6 +5,7 @@ class ReportsController < ApplicationController
     end
     def show
         @report = Report.find(params[:id])
+        render json: @report
     end
     def create
 

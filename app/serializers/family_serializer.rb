@@ -1,5 +1,6 @@
 class FamilySerializer
-
+  include FastJsonapi::ObjectSerializer
+  attributes :name
     def initialize(family_object)
       @family = family_object
     end

@@ -1,5 +1,7 @@
 class EventSerializer
- 
+  include FastJsonapi::ObjectSerializer
+  belongs_to :family
+  belongs_to :report
     def initialize(event_object)
       @event = event_object
     end
