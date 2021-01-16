@@ -6,7 +6,11 @@ class FamilySerializer
     end
   
     def to_serialized_json
-      @family.to_json()
+      @trainer.to_json(:include => {
+        :reports => {
+          :except => [:updated_at]
+        }},
+        :except => [:created_at, :updated_at])
     end
   #:include => {:reports},
   #:except => [:created_at, :updated_at]
