@@ -9,7 +9,8 @@ class ReportsController < ApplicationController
     end
     def create
 
-        report = Report.create()
+        report = Report.create(report_params)
+        family = report.families.create(family_params)
         render json: ReportSerializer.new(report).to_serialized_json
 
     end
@@ -27,5 +28,8 @@ class ReportsController < ApplicationController
     private
     def report_params
         params.require(:report).permit(:headline, :content)
+    end
+    def family_params
+      params.require(:family).permit(:name)
     end
 end
