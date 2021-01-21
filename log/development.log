@@ -8722,3 +8722,84 @@ Processing by EventsController#index as */*
 Completed 200 OK in 58ms (Views: 0.1ms | ActiveRecord: 2.3ms | Allocations: 2582)
 
 
+Started GET "/events" for ::1 at 2021-01-20 19:57:03 -0500
+Started GET "/events" for ::1 at 2021-01-20 19:57:03 -0500
+  [1m[35m (13.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (13.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#index as */*
+Processing by EventsController#index as */*
+  [1m[36mEvent Load (25.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  [1m[36mEvent Load (25.0ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/serializers/event_serializer.rb:19:in `to_serialized_json'
+  ↳ app/serializers/event_serializer.rb:19:in `to_serialized_json'
+  [1m[36mFamily Load (11.1ms)[0m  [1m[34mSELECT "families".* FROM "families" WHERE "families"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFamily Load (11.2ms)[0m  [1m[34mSELECT "families".* FROM "families" WHERE "families"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/serializers/event_serializer.rb:19:in `to_serialized_json'
+  ↳ app/serializers/event_serializer.rb:19:in `to_serialized_json'
+  [1m[36mReport Load (12.9ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mReport Load (13.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/serializers/event_serializer.rb:19:in `to_serialized_json'
+  ↳ app/serializers/event_serializer.rb:19:in `to_serialized_json'
+Completed 200 OK in 316ms (Views: 0.1ms | ActiveRecord: 89.1ms | Allocations: 20476)
+
+
+Completed 200 OK in 296ms (Views: 0.1ms | ActiveRecord: 184.2ms | Allocations: 19353)
+
+
+Started POST "/events" for ::1 at 2021-01-20 19:57:54 -0500
+Processing by EventsController#create as JSON
+  Parameters: {"family"=>"Popovic family", "headline"=>"Hello everyone!", "content"=>"On Saturday, we will organize a bruch at out house!", "event"=>{}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/events_controller.rb:8:in `create'
+  [1m[36mFamily Create (2.0ms)[0m  [1m[32mINSERT INTO "families" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Popovic family"], ["created_at", "2021-01-21 00:57:54.877136"], ["updated_at", "2021-01-21 00:57:54.877136"]]
+  ↳ app/controllers/events_controller.rb:8:in `create'
+  [1m[35m (12.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/events_controller.rb:8:in `create'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/events_controller.rb:9:in `create'
+  [1m[36mReport Create (0.5ms)[0m  [1m[32mINSERT INTO "reports" ("headline", "content", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["headline", "Hello everyone!"], ["content", "On Saturday, we will organize a bruch at out house!"], ["created_at", "2021-01-21 00:57:54.949930"], ["updated_at", "2021-01-21 00:57:54.949930"]]
+  ↳ app/controllers/events_controller.rb:9:in `create'
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/events_controller.rb:9:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/events_controller.rb:10:in `create'
+  [1m[36mFamily Load (1.1ms)[0m  [1m[34mSELECT "families".* FROM "families" WHERE "families"."id" = $1 LIMIT $2[0m  [["id", 34], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:10:in `create'
+  [1m[36mReport Load (0.6ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."id" = $1 LIMIT $2[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:10:in `create'
+  [1m[36mEvent Create (1.6ms)[0m  [1m[32mINSERT INTO "events" ("family_id", "report_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["family_id", 34], ["report_id", 38], ["created_at", "2021-01-21 00:57:55.078997"], ["updated_at", "2021-01-21 00:57:55.078997"]]
+  ↳ app/controllers/events_controller.rb:10:in `create'
+  [1m[35m (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/events_controller.rb:10:in `create'
+Completed 200 OK in 250ms (Views: 0.1ms | ActiveRecord: 26.7ms | Allocations: 10077)
+
+
+Started DELETE "/events/33" for ::1 at 2021-01-20 19:58:01 -0500
+Processing by EventsController#destroy as JSON
+  Parameters: {"id"=>"33", "event"=>{}}
+  [1m[36mEvent Load (1.0ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 33], ["LIMIT", 1]]
+  ↳ app/controllers/events_controller.rb:20:in `destroy'
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/events_controller.rb:21:in `destroy'
+  [1m[36mEvent Destroy (0.7ms)[0m  [1m[31mDELETE FROM "events" WHERE "events"."id" = $1[0m  [["id", 33]]
+  ↳ app/controllers/events_controller.rb:21:in `destroy'
+  [1m[35m (3.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/events_controller.rb:21:in `destroy'
+  [1m[36mFamily Load (0.4ms)[0m  [1m[34mSELECT "families".* FROM "families" WHERE "families"."id" = $1 LIMIT $2[0m  [["id", 34], ["LIMIT", 1]]
+  ↳ app/serializers/event_serializer.rb:19:in `to_serialized_json'
+  [1m[36mReport Load (0.5ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."id" = $1 LIMIT $2[0m  [["id", 38], ["LIMIT", 1]]
+  ↳ app/serializers/event_serializer.rb:19:in `to_serialized_json'
+Completed 200 OK in 123ms (Views: 0.1ms | ActiveRecord: 6.7ms | Allocations: 4438)
+
+
+Started GET "/events" for ::1 at 2021-01-20 19:58:03 -0500
+Processing by EventsController#index as */*
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  ↳ app/serializers/event_serializer.rb:19:in `to_serialized_json'
+  [1m[36mFamily Load (0.6ms)[0m  [1m[34mSELECT "families".* FROM "families" WHERE "families"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/serializers/event_serializer.rb:19:in `to_serialized_json'
+  [1m[36mReport Load (0.5ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/serializers/event_serializer.rb:19:in `to_serialized_json'
+Completed 200 OK in 71ms (Views: 0.3ms | ActiveRecord: 1.8ms | Allocations: 2601)
+
+
